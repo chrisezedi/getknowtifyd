@@ -1,0 +1,37 @@
+.splash{
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--primary-color);
+  }
+
+  .splash h1{
+    margin: 0;
+    font-size: 40px;
+    color: rgba(225,225,225, .01);
+    background-image: url("https://images.pexels.com/photos/6408282/pexels-photo-6408282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-repeat: repeat;
+    animation: animate 15s ease-in-out infinite;
+    text-transform: uppercase;
+    background-clip: border-box;
+    -webkit-background-clip:text;
+    font-weight: 900;
+  }
+
+    @keyframes animate {
+      0%, 100% {
+        background-position: left top;
+      }
+      25%{
+        background-position: right bottom;
+       }
+      50% {
+        background-position: left bottom;
+      }
+      75% {
+        background-position: right top;
+      }
+  }

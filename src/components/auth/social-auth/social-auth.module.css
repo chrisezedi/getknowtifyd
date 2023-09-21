@@ -1,0 +1,20 @@
+.social_btn {
+    border: 1px solid var(--primary-color);
+  }
+
+  .footer {
+    color: #000;
+  }
+
+  @media (max-width:640px) {
+
+    .social_btn {
+      background-color: #fff;
+      color: #000;
+  }
+
+  .footer {
+      color: #fff;
+      text-align: center;
+  }
+  }

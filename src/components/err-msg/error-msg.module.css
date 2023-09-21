@@ -1,0 +1,9 @@
+.err_text_color{
+    color: #f87171;
+}
+
+@media (max-width:640px) {
+    .err_text_color{
+        color: #fff;
+    }
+}
