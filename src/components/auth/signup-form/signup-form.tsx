@@ -125,11 +125,11 @@ const SignupForm = () => {
                     <div className={`${styles.mailsent} rounded`}>
                         <Image className="mx-auto" src="/mailsent.svg" alt="mailsent image" width="200" height="200"/>
                         <p className="text-center my-6">
-                        Congratulations! 🎉 An activation link has been sent to your email address. If you dont receive the email within the next few minutes, you can click the Resend Activation Email button to try again.
+                        Congratulations! 🎉 An activation link has been sent to your email address
                         </p>
 
                         <button type="button" className={`${styles.auth_btn} mx-auto p-3 rounded mb-6 btn-primary mt-3 flex justify-center items-center`} disabled={!isValid}>
-                                {isFetching ? 'Processing...' : 'Resend Activation Email'}
+                                {isFetching && 'Processing...'}
                                 {isFetching && <Loader />}
                             </button>
 

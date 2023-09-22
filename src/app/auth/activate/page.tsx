@@ -29,7 +29,7 @@ const ActivateAccount = () => {
     const resendActivationMail = async () => {
         try {
             setLoading(true);
-            const response = await axios.post('http://127.0.0.1:8000/auth/resendactivationmail', { uid, token })
+            const response = await axios.post('http://127.0.0.1:8000/auth/resendactivationmail', { uid })
 
             if (response.data?.redirect) {
                 toast({ title: 'Activated Account', description: response.data.message });
