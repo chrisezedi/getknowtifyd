@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Righteous } from 'next/font/google'
-
-const righteous = Righteous({ weight:"400",subsets:['latin'], style: ['normal'] })
+import { righteous } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Getknowtifyd',

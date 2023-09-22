@@ -1,9 +1,7 @@
 'use client';
 
 import styles from "./auth-wrapper.module.css";
-import { Pacifico } from "next/font/google";
-
-const pacifico = Pacifico({subsets:['cyrillic'], weight:"400"});
+import { pacifico } from '@/app/fonts';
 
 const AuthUIWrapper = ({children}:any) => {
     return (
