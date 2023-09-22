@@ -1,5 +1,5 @@
 .social_btn {
-    border: 1px solid var(--primary-color);
+    border: 1px solid hsl(var(--primary));
   }
 
   .footer {

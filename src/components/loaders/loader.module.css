@@ -21,7 +21,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border-left: 4px solid var(--secondary-color);
+  border-left: 4px solid hsl(var(--secondary));
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
