@@ -3,7 +3,7 @@
 }
 
 .auth_bg {
-  background-image: url("/signup-web.jpg");
+  background-image: linear-gradient(to bottom, rgba(255, 194, 226, 0.82), rgba(105, 146, 242, 0.82)), url("/signup-web.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
