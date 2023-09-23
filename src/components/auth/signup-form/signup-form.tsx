@@ -6,11 +6,13 @@ import Image from "next/image";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosError } from "axios"
 import styles from "../auth-wrapper/auth-wrapper.module.css";
 import VisibiltyToggler from "../../visibility-toggler/visibilty-toggler";
 import ErrorMsg from "../../err-msg/error-msg";
 import SocialAuth from "../../auth/social-auth/social-auth";
 import Loader from "../../loaders/loader";
+import { useToast } from "@/components/ui/toast/use-toast";
 
 const signupSchema = z.object({
     first_name: z.string().min(1, { message: "First name is required!" }).max(50, { message: "First name should have a maximum of 50 characters!" }),
@@ -36,6 +38,7 @@ const SignupForm = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const activate = searchParams.get('activate');
+    const { toast } = useToast();
 
 
     useEffect(() => {
@@ -48,15 +51,19 @@ const SignupForm = () => {
         setIsFetching(true);
         try {
             const { confirmPassword, ...payload } = data;
-            const response = await fetch('http://127.0.0.1:8000/auth/signup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            const response = await axios.post('http://127.0.0.1:8000/auth/signup', {...payload});
 
-            const result = await response.json();
-            if (result) {
+            if (response) {
                 router.push('/auth/signup?activate=true');
             }
-        } catch (error) {
-            console.log(error)
-        } finally{
+        } catch(error){
+            const axiosError = error as AxiosError;
+            const errorMsg = axiosError.response?.data as {email:string[]}
+            if (errorMsg?.email) {
+                toast({title:'User Exists',description:errorMsg?.email[0],variant:'destructive'})
+            }
+        }
+        finally{
             setIsFetching(false);
         }
     }
@@ -113,7 +120,7 @@ const SignupForm = () => {
                             </div>
 
                             <button type="submit" className={`${styles.auth_btn} ${!isValid && 'disabled'} btn  mt-3 flex justify-center items-center`} disabled={!isValid}>
-                                {isFetching ? 'Processing...' : 'Sign Up'}
+                                {!isFetching && 'Sign Up'}
                                 {isFetching && <Loader />}
                             </button>
 
@@ -127,11 +134,6 @@ const SignupForm = () => {
                         <p className="text-center my-6">
                         Congratulations! 🎉 An activation link has been sent to your email address
                         </p>
-
-                        <button type="button" className={`${styles.auth_btn} mx-auto p-3 rounded mb-6 btn-primary mt-3 flex justify-center items-center`} disabled={!isValid}>
-                                {isFetching && 'Processing...'}
-                                {isFetching && <Loader />}
-                            </button>
 
                         <small className="block text-center">
                         Thank you for choosing us, and we look forward to having you as a valued member of our community!
