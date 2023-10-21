@@ -51,7 +51,7 @@ const SignupForm = () => {
         setIsFetching(true);
         try {
             const { confirmPassword, ...payload } = data;
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_GNTF_API}/auth/signup`, {...payload});
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_GNTF_API}auth/signup`, {...payload});
 
             if (response) {
                 router.push('/auth/signup?activate=true');
