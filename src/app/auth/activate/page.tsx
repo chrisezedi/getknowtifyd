@@ -29,7 +29,7 @@ const ActivateAccount = () => {
     const resendActivationMail = async () => {
         try {
             setLoading(true);
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_GNTF_API}/auth/resendactivationmail`, { uid })
+            const response = await axios.post(`https://${process.env.NEXT_PUBLIC_GNTF_API}/auth/resendactivationmail`, { uid })
 
             if (response.data?.redirect) {
                 toast({ title: 'Activated Account', description: response.data.message });
