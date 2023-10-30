@@ -29,7 +29,7 @@ const ActivateAccount = () => {
     const resendActivationMail = async () => {
         try {
             setLoading(true);
-            const response = await axios.post(`https://${process.env.NEXT_PUBLIC_GNTF_API}/auth/resendactivationmail`, { uid })
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_GNTF_API}/auth/resendactivationmail`, { uid })
 
             if (response.data?.redirect) {
                 toast({ title: 'Activated Account', description: response.data.message });
@@ -48,7 +48,7 @@ const ActivateAccount = () => {
     useEffect(() => {
         const activateAccount = async () => {
             try {
-                const response = await axios.put('http://127.0.0.1:8000/auth/activate', { uid, token });
+                const response = await axios.put(`${process.env.NEXT_PUBLIC_GNTF_API}/auth/activate`, { uid, token });
                 if (response) {
                     toast({ title: 'Account Activated', description: response.data.message });
                     router.push('/');
